@@ -1,0 +1,14 @@
+/src/.Rproj.user
+.Rproj.user
+#exclude data
+/data
+#exclude all generated images
+*.png
+/figures
+/results/figures
+# erroneously generated pdf by ggplot
+Rplots.pdf
+# exclude old, uncatagorized scripts in temp folder
+/temp
+# private files
+/private

@@ -1,0 +1,16 @@
+The following R libraries are required:
+
+tidyverse
+cowplot
+ggrepel
+gplots
+heatmap.plus
+RColorBrewer
+magick
+docstring
+data.table
+foreach
+doParallel
+parallel
+
+ImageMagick

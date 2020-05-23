@@ -1,0 +1,28 @@
+environment.env
++ /data
++ /data/population_dat
++ /data/population_dat/species_counts.csv
++ /data/population_dat/cell_sizes.csv
++ /data/population_dat/population_size.csv
++ /data/population_dat/reaction_counts.csv
++ /data/population_dat/production_values.csv
++ /data/population_dat/pos_production.csv
++ /data/population_dat/death_rates.csv
++ /data/population_dat/genome_sizes.csv
+
+
++ /data/ecology_dat
++ /data/ecology_dat/lineages.csv
++ /data/ecology_dat/concentration_[a.0].csv
++ /data/ecology_dat/concentration_b.0.csv
++ /data/ecology_dat/concentration_{c.0}.csv
++ /data/ecology_dat/concentration_d.0.csv
++ /data/ecology_dat/concentration_[e.0].csv
++ /data/ecology_dat/concentration_f.0.csv
++ /data/ecology_dat/concentration_g.0.csv
++ /data/ecology_dat/concentration_h.0.csv
++ /data/ecology_dat/concentration_i.0*.csv
++ /data/ecology_dat/concentration_i.0*.csv
++ /plots
++ /plots/grid views
++ /plots/grid views/*
