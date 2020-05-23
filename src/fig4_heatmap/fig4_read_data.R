@@ -1,6 +1,6 @@
 source('src/utility/readMGX.R')
 
-folders <- list.dirs('../data/raw/', 
+folders <- list.dirs('data/raw/main_experiment/', 
                      full.names = TRUE, 
                      recursive = FALSE)
 output_dir <- 'data/temp/'
@@ -52,6 +52,8 @@ mgx <- mutate(mgx,
 
 # Lets check for every time point how many energy reactions are in the population, 
 # and categorize them based as resource-based, building-block based, or both. 
+# cut-offs are somewhat arbitrary but don't influence results very much
+
 energy_reactions <- mgx %>% 
   select(-final_commtype) %>% 
   group_by(sim, time_point) %>% 

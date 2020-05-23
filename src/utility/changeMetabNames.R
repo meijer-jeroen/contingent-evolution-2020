@@ -1,4 +1,4 @@
-# Changes generated Virtual Microbe metabolite names to something more sensible
+# Changes generated VirtualMicrobes metabolite names to something more sensible
 
 my_dict <- c(LETTERS[1:9], '-->', '\\+')
 names(my_dict) <- c('bb1 ', 'M1 ', 'R ', 'M2 ', 'bb2 ', 'M3 ', 'M4 ', 'M5 ', ' energy', '→ ', '+ ')
@@ -26,8 +26,3 @@ changeMetabNames <- function(reaction){
   
   return(reaction)
 }
-
-# to use, do something like: 
-# reactions <- colnames(mgx)[-c(1:7)]
-# reactions_renamed <- unlist(lapply(reactions, change_name))
-# reactions_renamed

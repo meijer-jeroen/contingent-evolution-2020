@@ -179,8 +179,6 @@ SM_prodrates <- mydata %>%
   scale_x_discrete(
     name = '',
     labels = c('crossfeeding\ncommunity\n(before\nremoval)', 'surviving\n lineage\n(after\nremoval)'),
-    #limits = c(0,2000)
-    #reaks = c(0,2000)
     expand= expand_scale(mult = c(0.4, .4))
   ) +
 

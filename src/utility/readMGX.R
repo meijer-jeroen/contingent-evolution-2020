@@ -4,7 +4,7 @@ readAndLabel <- function(csvfile){
   # reads csv file and adds a column with filename
   sim <-  basename(dirname(dirname(dirname((csvfile)))))
   seed <-  as.numeric(gsub(".*evo([0-9]+)$", "\\1", sim))
-
+  cat(seed)
   # # number communities 1-60 -------------------------------------------------
   # labels <-
   #   c(101,
@@ -90,46 +90,13 @@ readMGX <- function(folders){
   mgx <- do.call(rbind, lapply(paste0(folders, '/data/population_dat/reaction_counts.csv'), readAndLabel))
   
   # Some data clean up
-  source("/home/jeroen/Documents/scripts/clean_reaction_names.R")
-  mgx <- cleanReactionNames(mgx)
+  source("src/utility/clean_reaction_names.R")
+  mgx <- clean_reaction_names(mgx)
   mgx[is.na(mgx)] <- 0
   mgx$seed <- as.character(mgx$seed)
   
   mgx <- select(mgx, time_point, seed, population, sim, everything()) # reorder columns
   mgx <- arrange(mgx, sim, time_point)
   
-  # # Label most abundant energy reaction                    
-  # energy_reactions <- mgx %>% 
-  #   group_by(sim, time_point) %>% 
-  #   select(sim, time_point, starts_with("A"), starts_with('C'), starts_with('E')) %>% 
-  #   select(-c("C-->E+I", "C-->A+I")) %>% 
-  #   gather(reaction, fraction, -sim, -time_point) %>% 
-  #   slice(which.max(fraction))
-  # 
-  # mgx$ene_react <- energy_reactions$reaction
-  # rm(energy_reactions)
-  # 
-  # label strategy as inferred from on importers
-  # mgx <- mgx %>% 
-  #   mutate(strategy = 
-  #            case_when(`I*-->Aimport` > 0.33 & `I*-->Aimport` < 0.66 & `I*-->Eimport` > 0.33 & `I*-->Eimport` < 0.66 ~ 'CF',
-  #                      `I*-->Aimport` > .95 & `I*-->Eimport` > .95 ~ '2 imp', 
-  #                      `I*-->Aimport` > .95 | `I*-->Eimport` > .95 ~ '1 imp', 
-  #                      TRUE ~ '0 imp'
-  #            )
-  #   )                     
-  # 
-  # mgx <- select(mgx, time_point, sim, seed, strategy, ene_react, everything()) # reorder columns
-  # 
-  # mgx <- mgx %>% 
-  #   mutate(ene_sub = substr(ene_react, 1, 1))
-  # 
-  # mgx <- mgx %>% 
-  #   mutate(ene_prod = gsub('[A-Z]-->|\\+.*', '', mgx$ene_react))
-  # 
-  # mgx %>% 
-  #   group_by(sim) %>%
-  #   slice(which.max(time_point)) %>% 
-  #   select(sim, seed, time_point, ene_react, ene_sub, ene_prod, strategy, `I*-->Aimport`, `I*-->Eimport`)
   return(mgx)
 }
