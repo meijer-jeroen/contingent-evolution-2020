@@ -3,101 +3,31 @@
 library('tidyverse')
 library(cowplot)    # for theme_minimal_hgrid()
 library(ggthemes) # for geom_rangeframe
+source('src/utility/readSpeciesCounts.R')
+source('src/utility/convertEvoseedToPopulation.R')
 
 # set folders -----------------------------------------------------------------
-folders <- list.dirs('../data/raw/', 
+folders <- list.dirs('data/raw/main_experiment', 
                      recursive = FALSE, 
                      full.names = TRUE)
 
-output_folder <- '../results/figures/SI1/'
+output_folder <- 'figures/SI1/'
 dir.create(output_folder, showWarnings = FALSE)
   
-for(folder in folders[1:10]) {
+for(folder in folders) {
+
   cat(folder, '\n')
-
-  cat('reading species_counts.csv', '\n')
-  species_counts <- read.csv(file.path(folder, '/data/population_dat/species_counts.csv'))
-  species_counts <- species_counts[, !apply (is.na(species_counts), 2, all)] # remove rows that are all NA
-  species_counts[is.na(species_counts)] <- 0 
-  colnames(species_counts) <- gsub("X", "", colnames(species_counts))
-  species_counts <- gather(species_counts, lineage, fraction, -time_point)
-  species_counts$sim = rep(basename(folder), time = nrow(species_counts))
-  
+  species_counts <- readSpeciesCounts(folder)
   tmax = 1000000
-
-  # here we convert the evo seed (e.g. "101") to more reasonable numbers (e.g. "1")
-  labels <- 
-    c(101,
-      102,
-      103,
-      104,
-      105,
-      106,
-      201,
-      202,
-      203,
-      204,
-      205,
-      206,
-      207,
-      301,
-      302,
-      303,
-      304,
-      305,
-      306,
-      401,
-      402,
-      403,
-      404,
-      405,
-      406,
-      407,
-      408,
-      409,
-      410,
-      501,
-      502,
-      503,
-      504,
-      505,
-      506,
-      601,
-      602,
-      603,
-      604,
-      605,
-      606,
-      701,
-      702,
-      703,
-      704,
-      705,
-      706,
-      801,
-      802,
-      803,
-      804,
-      805,
-      806,
-      901,
-      902,
-      903,
-      904,
-      905,
-      906,
-      507
-    )
   
   substrRight <- function(x, n){
     substr(x, nchar(x)-n+1, nchar(x))
   }
-  
   seed <- substrRight(folder, 3)
-  population <- which(labels== as.numeric(seed))
+  population <- convertEvoseedToPopulation(as.numeric(seed))
+  
   figtitle <- paste0('Population ', population, ' (', basename(folder), ')') 
   
-
   cat('making species_counts.csv time plot', '\n')
   saving <-
     ggplot(data = species_counts %>% 
