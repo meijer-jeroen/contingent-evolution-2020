@@ -116,7 +116,6 @@ all_change <- mydata %>%
         
   ) + 
   panel_border(colour = 'black') + 
-  #ggtitle('Productiviy difference\nin all tested populations') +
   scale_x_discrete(name = '', 
                    expand= expand_scale(mult = c(0.2, .2)
                    )
@@ -168,174 +167,9 @@ mydata %>%
 
 100 * 5/484
 
-# cellular production rate ------------------------------------------------
-# individual_prod_rate <- mydata %>% 
-#   filter(seed == "704") %>% 
-#   group_by(sim) %>% 
-#   filter(rel_time %in% c(2000, 0)) %>%  
-#   ggplot(aes(x=as.factor(rel_time), y = prod_rate, group=sim)) + 
-#   geom_line(col = 'grey') +
-#   geom_point(aes(col = regcol, fill = regcol), size = 4, alpha = 0.8, shape = 21, col = 'white')  +
-#   theme_cowplot(12) + 
-#   scale_x_discrete(
-#     name = '', 
-#     labels = c('crossfeeding community\n(before removal)', 'surviving lineage\n(after removal)'),
-#     #limits = c(0,2000)
-#     #reaks = c(0,2000)
-#     expand= expand_scale(mult = c(0.2, .2))
-#   ) +
-#   scale_y_continuous(
-#     name = "production rate",
-#     limits = c(0.00275, 0.00375),
-#     breaks = c(0.003, 0.00325, 0.00350, 0.00375),
-#     expand = c(0, 0)
-#   ) + 
-#   scale_color_manual(
-#     name = NULL,
-#     values = darken(region_cols, 0.3)
-#   ) +
-#   scale_fill_manual(
-#     name = NULL,
-#     values = region_cols,
-#     labels = c('Major lineage', 'Minor lineage', 'Community of both lineages')
-#   ) + 
-#   guides(
-#     color = guide_legend(
-#       override.aes = list(
-#         linetype = c(rep(0, 5), 1),
-#         shape = c(rep(21, 5), NA)
-#       )
-#     )
-#   ) +
-#   theme(
-#     legend.position = "top",
-#     legend.justification = "right",
-#     legend.text = element_text(size = 9),
-#     legend.box.spacing = unit(0, "pt")
-#   ) +
-#   geom_text_repel(
-#     aes(label = label),
-#     color = "black",
-#     size = 9/.pt, # font size 9 pt
-#     point.padding = 0.1, 
-#     box.padding = .6,
-#     min.segment.length = 0,
-#     seed = 7654
-#   ) +
-#   ggtitle('Mean individual production rate')
-# 
-# 
-# 
-# comp <- plot_grid(individual_prod_rate, 
-#                   community_prod_rate, 
-#                   #labels = c('A',""),
-#                   rel_heights = c(1, 1),
-#                   ncol = 1, 
-#                   align = 'v', 
-#                   axis = 'l'
-# )
-# 
-# save_plot("~/commsbio2020/figures/fig3_prodrates.pdf", 
-#           comp, 
-#           nrow = 2, 
-#           base_asp = 1, 
-#           base_height = NULL, 
-#           base_width = 5
-# )
 
+# Supplementary Figure 2 -------------------------------------------------
 
-
-# cellular with error bars ------------------------------------------------
-
-
-# with_errors <- mydata %>% 
-#   filter(seed == "704") %>% 
-#   group_by(sim) %>% 
-#   filter(rel_time %in% c(2000, 0)) %>%  
-#   ggplot(aes(x=as.factor(rel_time), y = prod_rate, group=sim)) + 
-#   geom_errorbar(aes(
-#                     ymin = prod_rate - prod_rate_std,
-#                     ymax = prod_rate + prod_rate_std),
-#                 width = 0.5, size = 0.5,
-#                 position = position_dodge(width=0.5)
-#                 ) +
-#     geom_line(col = 'grey') +
-# 
-#   geom_point(aes(col = regcol, fill = regcol), position = position_dodge(width=0.5), size = 4, alpha = 0.8, shape = 21, col = 'white') + 
-#  theme_cowplot(12) + 
-#   scale_x_discrete(
-#     name = '',
-#     labels = c('crossfeeding community\n(before removal)', 'surviving lineage\n(after removal)'),
-#     #limits = c(0,2000)
-#     #reaks = c(0,2000)
-#     expand= expand_scale(mult = c(0.2, .2))
-#     ) +
-#   # scale_y_continuous(
-#   #   name = "production rate",
-#   #   limits = c(0.00275, 0.00375),
-#   #   breaks = c(0.003, 0.00325, 0.00350, 0.00375),
-#   #   expand = c(0, 0)
-#   # ) + 
-#   scale_color_manual(
-#     name = NULL,
-#     values = darken(region_cols, 0.3)
-#   ) +
-#   scale_fill_manual(
-#     name = NULL,
-#     values = region_cols,
-#     labels = c('Minor lineage', 'Major lineage', 'Community of both lineages')
-#   ) + 
-#   guides(
-#     color = guide_legend(
-#       override.aes = list(
-#         linetype = c(rep(0, 5), 1),
-#         shape = c(rep(21, 5), NA)
-#       )
-#     )
-#   ) +
-#  theme(
-#     legend.position = "top",
-#     legend.justification = "right",
-#     legend.text = element_text(size = 9),
-#     legend.box.spacing = unit(0, "pt")
-#   ) +
-#   #  geom_text_repel(
-#   #   aes(label = label),
-#   #   color = "black",
-#   #   size = 9/.pt, # font size 9 pt
-#   #   point.padding = 0.1, 
-#   #   box.padding = .6,
-#   #   min.segment.length = 0,
-#   #   seed = 7654
-#   # ) +
-#   ggtitle('Mean individual production rate')
-
-
-
-# Supplementary Figure ----------------------------------------------------
-# temp <- mydata %>% 
-#   select(sim, rel_time, prod_rate, pop_size) %>% 
-#   group_by(sim) %>% 
-#   filter(rel_time %in% c(2000, 0)) %>%  
-#   ungroup() %>% 
-#   pivot_wider(names_from = rel_time, values_from = c(prod_rate, pop_size)) %>% 
-#   mutate(comm_prod_0 =prod_rate_0 * pop_size_0, 
-#          comm_prod_2000 = prod_rate_2000 * pop_size_2000, 
-#          prod_change = comm_prod_2000 - comm_prod_0, 
-#          rel_change = prod_change / comm_prod_0,
-#          exp = gsub('^CF_fixDI_freenon_evo|\\_nomut|\\_k[0-9]*|\\_t[0-9]*$', '', sim), 
-#          kilseed = gsub('^CF_fixDI_freenon_evo[0-9]*|\\_k|\\_nomut|\\_t[0-9]*$', '', sim)
-#          )
-# head(temp)  
-# 
-# temp %>% 
-#   ggplot() + 
-#   geom_point(aes(x = exp, y = rel_change, col = kilseed)
-#   ) +
-#   theme(legend.position = 'none')
-  
-# 
-# # Supplementary Material: all production rates ----------------------------
 SM_prodrates <- mydata %>%
   group_by(sim) %>%
   filter(rel_time %in% c(2000, 0)) %>%
@@ -356,7 +190,7 @@ SM_prodrates <- mydata %>%
     #breaks = c(3, 4,5,6, 7),
     expand = c(0, 0)
   ) +
-  facet_wrap(~seed, nrow = 6) +
+  facet_wrap(~population, nrow = 6) +
 
   scale_color_manual(
     name = NULL,
@@ -368,24 +202,10 @@ SM_prodrates <- mydata %>%
     labels = c('Lineage 1', 'Lineage 2', 'Community of both lineages')
   ) +
 
-  #
-  # scale_color_manual(
-  #   name = 'Simulation',
-  #   values = rep(darken(region_cols, 0.3), times = length(unique(mydata$seed)))
-  # ) +
-  # scale_fill_manual(
-  #   name = 'Simulation',
-  #   values = rep(darken(region_cols), times = length(unique(mydata$seed)))
-  #   #labels = c('CF community (A+B)', 'Lineage B', 'Lineage A')
-  # ) +
-guides(
+ guides(
   fill = guide_legend(
     nrow = 1
-    #override.aes = list(
-    #linetype = c(rep(0, 5), 1),
-    #  shape = c(rep(21, 5), NA)
-    #)
-  )
+   )
 ) +
   theme_cowplot(12) +
   theme(
@@ -393,25 +213,16 @@ guides(
     legend.position = "top",
     legend.justification = 'right',
     legend.text = element_text(size =12),
-    #legend.box.spacing = unit(0, 'pt'),
+ 
     panel.spacing.x = unit(1.0, 'lines'),
     panel.spacing.y = unit(1.5, 'lines'),
     strip.background = element_blank()
   ) +
-  # geom_text_repel(
-  #   aes(label = label),
-  #   color = "black",
-  #   size = 9/.pt, # font size 9 pt
-  #   point.padding = 0.1,
-  #   box.padding = .6,
-  #   min.segment.length = 0,
-  #   seed = 7654
-  # ) +
   panel_border()
 
 
 
-save_plot("figures/supplementary_figure_5_prodrates.pdf",
+save_plot("figures/supp_fig_2_prodrates.pdf",
           SM_prodrates,
           nrow = 1,
           base_asp = 0.8,

@@ -5,71 +5,73 @@ readAndLabel <- function(csvfile){
   sim <-  basename(dirname(dirname(dirname((csvfile)))))
   seed <-  as.numeric(gsub(".*evo([0-9]+)$", "\\1", sim))
 
-  # number communities 1-60 -------------------------------------------------
-  labels <-
-    c(101,
-      102,
-      103,
-      104,
-      105,
-      106,
-      201,
-      202,
-      203,
-      204,
-      205,
-      206,
-      207,
-      301,
-      302,
-      303,
-      304,
-      305,
-      306,
-      401,
-      402,
-      403,
-      404,
-      405,
-      406,
-      407,
-      408,
-      409,
-      410,
-      501,
-      502,
-      503,
-      504,
-      505,
-      506,
-      601,
-      602,
-      603,
-      604,
-      605,
-      606,
-      701,
-      702,
-      703,
-      704,
-      705,
-      706,
-      801,
-      802,
-      803,
-      804,
-      805,
-      806,
-      901,
-      902,
-      903,
-      904,
-      905,
-      906,
-      507
-    )
-  population <- which(labels== as.numeric(seed))
+  # # number communities 1-60 -------------------------------------------------
+  # labels <-
+  #   c(101,
+  #     102,
+  #     103,
+  #     104,
+  #     105,
+  #     106,
+  #     201,
+  #     202,
+  #     203,
+  #     204,
+  #     205,
+  #     206,
+  #     207,
+  #     301,
+  #     302,
+  #     303,
+  #     304,
+  #     305,
+  #     306,
+  #     401,
+  #     402,
+  #     403,
+  #     404,
+  #     405,
+  #     406,
+  #     407,
+  #     408,
+  #     409,
+  #     410,
+  #     501,
+  #     502,
+  #     503,
+  #     504,
+  #     505,
+  #     506,
+  #     601,
+  #     602,
+  #     603,
+  #     604,
+  #     605,
+  #     606,
+  #     701,
+  #     702,
+  #     703,
+  #     704,
+  #     705,
+  #     706,
+  #     801,
+  #     802,
+  #     803,
+  #     804,
+  #     805,
+  #     806,
+  #     901,
+  #     902,
+  #     903,
+  #     904,
+  #     905,
+  #     906,
+  #     507
+  #   )
+  # population <- which(labels== as.numeric(seed))
 
+  source('src/utility/convertEvoseedToPopulation.R')
+  population <- convertEvoseedToPopulation(as.numeric(seed))
   temp <- read.csv(csvfile, header = TRUE, check.names = FALSE)
   temp <- cbind(seed = rep(seed, times = nrow(temp)), 
                 temp)
@@ -95,7 +97,6 @@ readMGX <- function(folders){
   
   mgx <- select(mgx, time_point, seed, population, sim, everything()) # reorder columns
   mgx <- arrange(mgx, sim, time_point)
-  
   
   # # Label most abundant energy reaction                    
   # energy_reactions <- mgx %>% 
@@ -132,6 +133,3 @@ readMGX <- function(folders){
   #   select(sim, seed, time_point, ene_react, ene_sub, ene_prod, strategy, `I*-->Aimport`, `I*-->Eimport`)
   return(mgx)
 }
-
-
-#save(file = paste0(Sys.time(), '_mgx.rdata'), mgx)
