@@ -1,5 +1,5 @@
-The following R libraries are required:
-
+R version 3.6.3 (2020-02-29)
+R packages:
 tidyverse
 cowplot
 ggrepel
@@ -12,5 +12,11 @@ data.table
 foreach
 doParallel
 parallel
-
-ImageMagick
+scales
+colorspace
+gridtext
+devtools
+ComplexHeatmap
+circlize
+dendsort
+ggthemes
