@@ -26,12 +26,11 @@ Custom scripts for data analysis and generating figures
 ```
 
 ## VirtualMicrobes
-VirtualMicrobes is available at https://bitbucket.org/thocu/virtual-microbes/
 This study used VirtualMicrobes v0.2.5 which is archived at https://doi.org/10.5281/zenodo.3840463 and available for download there. 
+Information about VirtualMicrobes is available at https://bitbucket.org/thocu/virtual-microbes/
 
 ## Data
 Raw data is available at https://doi.org/10.5281/zenodo.3840463
-
 
 ## License
 
