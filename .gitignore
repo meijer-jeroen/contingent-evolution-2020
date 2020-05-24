@@ -6,6 +6,7 @@
 *.png
 /figures
 /results/figures
+/for_print
 # erroneously generated pdf by ggplot
 Rplots.pdf
 # exclude old, uncatagorized scripts in temp folder
