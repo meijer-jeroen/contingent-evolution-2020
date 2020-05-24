@@ -1,8 +1,10 @@
 # contingent-evolution-2020
+Custom scripts for data analysis and generating figures for:
+
 "Contingent evolution of alternate metabolic network topologies determines whether crossfeeding evolves"
 (2020) Jeroen Meijer, Bram van Dijk, Paulien Hogeweg
 
-Custom scripts for data analysis and generating figures 
+Also includes an archived version of VirtualMicrobes 0.2.5 which was used in this study. 
 
 
 ## Project organization
