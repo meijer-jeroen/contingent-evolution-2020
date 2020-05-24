@@ -4,7 +4,7 @@
 /data
 #exclude all generated images
 *.png
-/figures
+/figures/*
 /results/figures
 /for_print
 # erroneously generated pdf by ggplot
