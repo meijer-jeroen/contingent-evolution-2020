@@ -175,7 +175,7 @@ SM_prodrates <- mydata %>%
   filter(rel_time %in% c(2000, 0)) %>%
   ggplot(aes(x=as.factor(rel_time), y = pop_size * prod_rate , group=sim)) +
   geom_line(col = 'grey', alpha =0.3) +
-  geom_point(aes(col = regcol, fill = regcol), size = 2, alpha = 0.8, shape = 21, col = 'white')  +
+  geom_point(aes(col = regcol, fill = regcol), size = 3, alpha = 0.8, shape = 21, col = 'white')  +
   scale_x_discrete(
     name = '',
     labels = c('crossfeeding\ncommunity\n(before\nremoval)', 'surviving\n lineage\n(after\nremoval)'),
@@ -188,7 +188,7 @@ SM_prodrates <- mydata %>%
     #breaks = c(3, 4,5,6, 7),
     expand = c(0, 0)
   ) +
-  facet_wrap(~population, nrow = 6) +
+  facet_wrap(~population, nrow = 5) +
 
   scale_color_manual(
     name = NULL,
@@ -208,12 +208,12 @@ SM_prodrates <- mydata %>%
   theme_cowplot(12) +
   theme(
     strip.text = element_text(size = 12, margin = margin(0, 0, 6, 0, "pt")),
-    legend.position = "top",
+    legend.position = "bottom",
     legend.justification = 'right',
     legend.text = element_text(size =12),
  
-    panel.spacing.x = unit(1.0, 'lines'),
-    panel.spacing.y = unit(1.5, 'lines'),
+    panel.spacing.x = unit(.3, 'lines'),
+    panel.spacing.y = unit(.3, 'lines'),
     strip.background = element_blank()
   ) +
   panel_border()
@@ -223,7 +223,7 @@ SM_prodrates <- mydata %>%
 save_plot("figures/supp_fig_2_prodrates.pdf",
           SM_prodrates,
           nrow = 1,
-          base_asp = 0.8,
+          base_asp = 1,
           base_height = NULL,
           base_width = 10
 )

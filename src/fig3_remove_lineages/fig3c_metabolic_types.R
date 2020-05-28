@@ -48,8 +48,10 @@ no_shades_b <- filter(for_plot2, lineage == lin_b) %>% select(shadetype_n) %>% d
 
 
 
-set.seed(12)
-  
+
+
+set.seed(32)
+
 cols <- c('black', 
           sample(sequential_hcl(no_shades_a + 2, 'Burg'))[-c((no_shades_a + 1) : (no_shades_a + 2))], 
           sample(sequential_hcl(no_shades_b + 2, 'Teal'))[-c((no_shades_b + 1): (no_shades_b + 2))]
@@ -85,12 +87,11 @@ shadefig <- for_plot2 %>%
   guides(fill = guide_legend(title = 'metabolic genotype',
                              title.position = 'left', nrow = 1, order = 1)
   ) +
-
-  #geom_vline(color = 'white', xintercept = 0) +
+  
   scale_x_continuous(
-    limits = c(-200, 2000),
+    limits = c(-200, 1500),
     expand = c(0, 0),
-    breaks = c(0,500,1000,2000)
+    breaks = c(0,500,1000,1500)
   ) +
   scale_y_continuous(
     limits = c(0, 2000),
@@ -99,9 +100,7 @@ shadefig <- for_plot2 %>%
   ) +
   theme(legend.position = 'none')
 
-#saveRDS(shadefig, file = 'data/temp/fig3_shadefig.RDS') # for composition
-
-save_plot(paste0("figures/fig3c_metabolic_types.png"),
+save_plot(paste0("figures/fig3c_metabolic_types.pdf"),
           shadefig,
           nrow = 1,
           base_asp = .8,
@@ -109,6 +108,8 @@ save_plot(paste0("figures/fig3c_metabolic_types.png"),
           base_width = 7
 )
 
+  
 
+  
 
 

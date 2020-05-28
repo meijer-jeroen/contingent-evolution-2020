@@ -31,13 +31,14 @@ for(folder in folders) {
   cat('making species_counts.csv time plot', '\n')
   saving <-
     ggplot(data = species_counts %>% 
-             filter(time_point %% 500 == 0),
+             filter(time_point %% 500 == 0),  #
            aes(x = time_point, y = fraction)) + 
     geom_line(aes(col = lineage), size = 1) + 
-    geom_rangeframe(data = data.frame(x = c(0, tmax), 
-                                      y = c(0.0001, 1.0)), 
+    geom_rangeframe(data = data.frame(x = c(0, tmax),
+                                      y = c(0.0001, 1.0)),
                     aes(x, y),
-                    size = 2) + 
+                    size = 2) +
+    #theme_cowplot(12) + 
     theme_tufte(base_size = 30) + 
     theme(legend.position = 'none')   +
     
@@ -55,12 +56,15 @@ for(folder in folders) {
     ggtitle(figtitle) + 
     theme(plot.title = element_text(hjust = 0))
   
-  width = 20 * max(species_counts$time_point)/1000000 # to scale width with simulation length
-  ggsave(saving, 
-         file = paste0(output_folder, '/population', population, '.png'),
-         width = width, height = 5, 
-         limitsize = FALSE
-  )  
+  
+  save_plot(paste0("figures/SI1/", basename(folder), '.png'),
+            saving,
+            nrow = 1, 
+            base_asp = 3.5, 
+            base_height = NULL, 
+            base_width = 12
+            )
+  
 } 
 
 
