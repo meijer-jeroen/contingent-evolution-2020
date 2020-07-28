@@ -29,7 +29,7 @@ Also includes an archived version of VirtualMicrobes 0.2.5 which was used in thi
 2. Download the raw data from https://doi.org/10.5281/zenodo.3840463
 3. Extract the data and place it in the folder 'data/raw'
 4. make subdirectories 'figures' and 'data/temp' 
-5. Use Rstudio to open the contingent-evolution-2020.Rproj file found in main folder, and run individual scripts in the `src` folder to generate the figures. Some figures might require pre-processing of data with supplied scripts. 
+5. Use Rstudio to open the contingent-evolution-2020.Rproj file found in main folder, and run individual scripts in the 'src' folder to generate the figures. Some figures might require pre-processing of data with supplied scripts. 
 
 ## VirtualMicrobes
 This study includes the VirtualMicrobes Python module v0.2.5. Information about VirtualMicrobes and installation instructions are available at https://bitbucket.org/thocu/virtual-microbes/
