@@ -25,10 +25,10 @@ Also includes an archived version of VirtualMicrobes 0.2.5 which was used in thi
 
 ```
 ## How to use
-1. Clone this repository with `git clone https://github.com/meijer-jeroen/contingent-evolution-2020`
+1. Open a terminal and clone this repository with `git clone https://github.com/meijer-jeroen/contingent-evolution-2020`
 2. Download the raw data from https://doi.org/10.5281/zenodo.3840463
-3. Extract the data and place it in the folder 'data/raw'
-4. make subdirectories 'figures' and 'data/temp' 
+3. Extract the data and place it in the folder 'contingent-evolution-2020/data/raw'
+4. make subdirectories 'contingent-evolution-2020/figures' and 'contingent-evolution-2020/data/temp' 
 5. Use Rstudio to open the contingent-evolution-2020.Rproj file found in main folder, and run individual scripts in the 'src' folder to generate the figures. Some figures might require pre-processing of data with supplied scripts. 
 
 ## VirtualMicrobes
